@@ -70,6 +70,7 @@ public class Film {
         System.out.println();
 
         // Setter testen
+        System.out.println("Neue, geänderte Werte:");
         Inception.setDauer(99);
         System.out.println("Inception Dauer: " + Inception.getDauer());
         TheDarkKnight.setGenre("Komödie");
