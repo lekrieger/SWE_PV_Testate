@@ -1,0 +1,6 @@
+Erstelle eine Oberklasse Fahrzeuge mit den Unterklassen Fahrrad und Auto
+
+Jedes Fahrzeug soll eine Geschwindigkeit und Farbe haben
+die Unterklassen sollen individuelle Attribute besitzen
+
+Erstelle neue Fahrzeuge mit Attributen und gebe diese aus
