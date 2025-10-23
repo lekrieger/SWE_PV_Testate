@@ -3,6 +3,6 @@ git config --global pull.rebase true
 
 
 Im Terminal ausführen
-1) git commit -m "push"
+1) git commit -a -m "push"
 2) git pull --rebase
 3) git push
