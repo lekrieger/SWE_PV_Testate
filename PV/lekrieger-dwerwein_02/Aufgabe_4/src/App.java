@@ -1,5 +1,5 @@
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)  {
 
         TurtleBot bot1 = new TurtleBot(0,0,0);
         TurtleBot bot2 = new TurtleBot(100,50,75);
