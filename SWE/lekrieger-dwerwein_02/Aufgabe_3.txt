@@ -1,0 +1,52 @@
+// staged (Dateien, die für den nächsten Commit vorgemerkt sind)
+// unstaged (Dateien mit Änderungen, die noch nicht für einen Commit vorgemerkt sind)
+
+1. aktuellen Zustand von Dateien und Verzeichnissen anzeigen
+    Befehl: git status 
+
+
+2. neues Repository erstellen
+    Befehl: git init (im entsprechenden Dateipfad)
+
+3. bestehendes Repository klonen
+    Befehl: git clone <URL>
+
+
+4. Arbeit mit Arbeitsverzeichnissen & Dateien zur Versionskontrolle hinzufügen 
+    Befehl: git add <dateiname> (fügt bearbeitete Datei zum Staging hinzu)
+            git add . (alle Änderungen stagen)
+            git commit -m "message" (speichert alle Änderungen aus der Staging Area)
+
+
+5. Änderungen rückgängig machen
+    Befehl: git restore <dateiname> (Änderungen an einer Datei im Working Directory verwerfen [vor git add] )
+    Befehl: git restore --staged <dateiname> (Datei aus der Staging Area entfernen [nach git add, vor git commit] )
+    Befehl: git reset --hard HEAD~1 (den letzten Commit rückgängig machen; nur bei lokal und nicht gepushten commits)
+    Befehl: git revert <commit_hash> (einen bereits veröffentlichten Commit rückgängig machen)
+
+
+6. Änderungen synchronisieren
+    Befehl: git remote add origin <url> (Remote hinzufügen [falls nicht geklont]; verbindet lokales Repo mit origin)
+    Befehl: git push (lokales commit hochladen)
+    Befehl: git pull (Änderungen aus dem Repo holen)
+            Holt Änderungen vom Remote-Repository und versucht, sie automatisch mit Ihren lokalen Änderungen zusammenzuführen (= git fetch + git merge)
+
+
+7. Verschieben, Löschen, Umbenennen
+    Befehl: git rm <dateiname> (fügt löschen ins staging hinzu)
+    Befehl: git mv </pfad/alter_name> </pfad/neuer_name> (umbenennen und verschieben)
+
+
+8. Arbeiten mit Branches
+    Befehl: git branch -a (auflisten (lokal), -a = alle (auch remote) )
+    Befehl: git branch <name> (neuen Branch erstellen)
+    Befehl: git switch <name> (wechseln)
+            git switch -c <name> erstellen und dorthin wechseln
+
+9. Zusammenführen (Merge) und Konfliktlösung
+    Befehl: git pull, git merge <branch> (neuen Änderungen holen und zusammenführen)
+    bei Konflikten: 
+        Bsp: in zwei Branches wurde dieselbe Datei in derselben Zeile unterschiedlich geändert
+        Lsg: - mit git status sehen, welche Änderungen es gibt und dann manuell ändern, oder current change / incoming change auswählen
+             - git add <dateiname> & git commit
+
