@@ -1,4 +1,3 @@
-
 // Die Klasse Rechner ist von Datenkopplung über integer abhängig
 // lose Kopplungsart, da Module Daten nur über Parameter austauschen
 
