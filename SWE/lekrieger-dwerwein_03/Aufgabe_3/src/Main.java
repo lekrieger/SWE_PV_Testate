@@ -6,8 +6,8 @@ public class Main {
 
         System.out.println("Test: addiere(5, 7) = " + summe);
         
-        //Hier wird überprüft, ob die Addition korrekt ist
-        if (summe == 12) {
+        //Hier wird entschieden ob der Test erfolgreich sein fehlschlagen soll
+        if (summe == 1) {
             System.out.println("Der Test war erfolgreich!");
         } else {
             System.out.println("Der Test ist fehlgeschlagen.");
