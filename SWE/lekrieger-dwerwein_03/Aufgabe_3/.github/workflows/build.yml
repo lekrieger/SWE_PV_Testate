@@ -15,11 +15,11 @@ jobs:
 
     # Code aus dem Repository holen
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     # Java JDK 25 einrichten
     - name: Set up JDK 25
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v4
       with:
         java-version: '25'
 
