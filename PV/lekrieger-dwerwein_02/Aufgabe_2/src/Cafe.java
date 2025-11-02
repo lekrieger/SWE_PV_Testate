@@ -1,6 +1,3 @@
-/**
- * A Class, showing information about different drinks in a cafe.
- */
 
 public class Cafe {
 

@@ -49,4 +49,3 @@
         Bsp: in zwei Branches wurde dieselbe Datei in derselben Zeile unterschiedlich geändert
         Lsg: - mit git status sehen, welche Änderungen es gibt und dann manuell ändern, oder current change / incoming change auswählen
              - git add <dateiname> & git commit
-
