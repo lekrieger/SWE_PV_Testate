@@ -13,12 +13,10 @@ jobs:
     # Die Schritte, die in diesem Job ausgeführt werden
     steps:
 
-    # Code aus dem Repository holen
-    - name: Checkout repository
+    - name: Repository auschecken
       uses: actions/checkout@v4
 
-    # Java JDK 25 einrichten
-    - name: Set up JDK 25
+    - name: JDK 25 einrichten
       uses: actions/setup-java@v4
       with:
         java-version: '25'
