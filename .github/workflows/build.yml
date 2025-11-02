@@ -4,7 +4,7 @@ name: Java CI Build und Test für Woche 3 Aufgabe 3
 on: 
   push:
     paths:
-    - 'SWE/lekrieger-dwerwein_01/Aufgabe_3/**'
+    - 'SWE/lekrieger-dwerwein_03/Aufgabe_3/**'
     branches: [ main ]
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: SWE/lekrieger-dwerwein_01/Aufgabe_3
+        working-directory: SWE/lekrieger-dwerwein_03/Aufgabe_3
 
     # Die Schritte, die in diesem Job ausgeführt werden
     steps:
