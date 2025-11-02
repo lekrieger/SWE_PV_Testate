@@ -1,8 +1,10 @@
-name: Java CI Build und Test
+name: Java CI Build und Test für Woche 3 Aufgabe 3
 
 # Nur ausführen, wenn in den main-Branch gepusht wird
 on: 
   push:
+    paths:
+    - 'SWE/lekrieger-dwerwein_01/Aufgabe_3/**'
     branches: [ main ]
 
 jobs:
@@ -10,9 +12,12 @@ jobs:
     # Der Job läuft auf der neuesten Ubuntu-Version
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: SWE/lekrieger-dwerwein_01/Aufgabe_3
+
     # Die Schritte, die in diesem Job ausgeführt werden
     steps:
-
     - name: Repository auschecken
       uses: actions/checkout@v4
 
