@@ -1,0 +1,30 @@
+name: Java CI Build und Test
+
+# Nur ausführen, wenn in den main-Branch gepusht wird
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build_und_test:
+    # Der Job läuft auf der neuesten Ubuntu-Version
+    runs-on: ubuntu-latest
+
+    # Die Schritte, die in diesem Job ausgeführt werden
+    steps:
+
+    # Code aus dem Repository holen
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Java JDK 25 einrichten
+    - name: Set up JDK 25
+      uses: actions/setup-java@v2
+      with:
+        java-version: '25'
+
+    - name: Java-Projekt kompilieren
+      run: javac -d bin src/*.java
+
+    - name: Java-Tests ausführen
+      run: java --class-path bin Main
