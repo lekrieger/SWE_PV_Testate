@@ -6,11 +6,10 @@ public class Main {
 
         System.out.println("Test: addiere(5, 7) = " + summe);
 
-        if (summe == 12) {
+        if (summe == 22) {
             System.out.println("Der Test war erfolgreich!");
         } else {
             System.out.println("Der Test ist fehlgeschlagen.");
         }
-        //Testzeile
     }
 }
