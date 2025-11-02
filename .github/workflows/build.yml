@@ -16,19 +16,20 @@ jobs:
       run:
         working-directory: 'SWE/lekrieger-dwerwein_03/Aufgabe_3'
 
-    # Die Schritte, die in diesem Job ausgeführt werden
+    # Die 4 Schritte, die in diesem Job ausgeführt werden
     steps:
+    #1 
     - name: Repository auschecken
       uses: actions/checkout@v4
-
+    #2
     - name: JDK 25 einrichten
       uses: actions/setup-java@v4
       with:
         java-version: '25'
         distribution: 'temurin'
-
+    #3
     - name: Java-Projekt kompilieren
       run: javac -d bin src/*.java
-
+    #4
     - name: Java-Tests ausführen
       run: java --class-path bin Main

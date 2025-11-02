@@ -1,18 +1,16 @@
-## Getting Started
+Welche Platform? 
+- GitHub
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Wie ist die Pipelpine aufgebaut?
+- Eigentlich: Aufruf bei jeder Änderung in der main branch - HIER: Bei jeder Änderung
+- Ein primärer Job: build_und_test
+- working directory lässt alle Befehle im richtigen Pfad ausführen
+- Folgende Schritte werden ausgeführt:
+    1. Code wird aus dem Repository geholt
+    2. Java (JDK 25) wird auf dem Server installiert
+    3. Java wird kompiliert
+    4. Main wird ausgeführt
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Was passiert bei einem push?
+Bei jedem Push führt die Pipeline den Test aus.
+Hierbei wird Main aufgerufen und bei einem Fehler, in dem Fall wenn 5+7!=12, wird System.exit(1) ausgeführt, was von der Pipeline als Fehler erkannt wird.

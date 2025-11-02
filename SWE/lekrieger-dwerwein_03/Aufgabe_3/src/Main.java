@@ -5,11 +5,13 @@ public class Main {
         int summe = rechner.addiere(5, 7);
 
         System.out.println("Test: addiere(5, 7) = " + summe);
-
-        if (summe == 22) {
+        
+        //Hier wird überprüft, ob die Addition korrekt ist
+        if (summe == 12) {
             System.out.println("Der Test war erfolgreich!");
         } else {
             System.out.println("Der Test ist fehlgeschlagen.");
+            //Hier wird in GitHub Actions ein Fehlercode zurückgegeben
             System.exit(1);
         }
     }
