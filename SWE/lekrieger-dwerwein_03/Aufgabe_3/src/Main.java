@@ -10,6 +10,7 @@ public class Main {
             System.out.println("Der Test war erfolgreich!");
         } else {
             System.out.println("Der Test ist fehlgeschlagen.");
+            System.exit(1);
         }
     }
 }
