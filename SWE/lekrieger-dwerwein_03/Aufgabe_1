@@ -1,0 +1,34 @@
+Phasen der Software-Entwicklung
+
+1. Anforderungsphase
+2. Spezifikationsphase
+3. Planungsphase
+4. Entwurfsphase
+5. Implementierungsphase
+6. Intergrationsphase
+7. Wartungsphase
+8. Rückzugsphase
+
+a) Erstellung einer detaillierten Beschreibung der zu liefernden Funktionen und Anforderungen
+--> 2. Spezifikationsphase - Präzise Festlegung der Leistungen
+
+b) Planung der Struktur und der Aufteilung des Systems in einzelne Komponenten
+--> 4. Entwurfsphase - Systemarchitektur
+
+c) Sicherstellung des reibungslosen Ablaufs beim Endanwender
+--> 7. Wartungsphase - Betrieb beim Kunden & Fehlerbeseitigung
+
+d) Erfassung und Auswertung der Erwartungen des Kunden
+--> 1. Anforderungsphase - Analyse der Kundenwünsche
+
+e) Entwicklung der einzelnen Programmbestandteile durch das Team
+--> 5. Implementierungsphase - Implementierung der Programmkomponenten
+
+f) Einschätzung der benötigten Zeit und Ressourcen für die Umsetzung
+--> 3. Planungsphase - Projektmanagementplan & Zeitdauer, Aufwandsabschätzung
+
+g) Übergabe des fertigen Produkts an den Endkunden
+--> 6. Integrationsphase - Auslieferung an den Kunden
+
+h) Abschaltung der aktiven Komponenten
+--> 8. Rückzugsphase - Einstellung der Nutzung
