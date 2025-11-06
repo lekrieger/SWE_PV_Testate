@@ -11,7 +11,4 @@ public class Animal {
     public String toString() {
         return "Name: " + name + ", Alter: " + alter;
     }
-    // public String toString() {
-    //     return name + " ( " + alter + " Jahre )";
-    // }
 }
