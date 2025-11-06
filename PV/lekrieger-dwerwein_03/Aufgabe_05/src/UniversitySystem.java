@@ -5,7 +5,7 @@ class UniversitySystem {
     public UniversitySystem() {
 
         // Die Klasse 'ExamEvaluator' ist weg, stattdessen hier die anonyme innere Klasse:
-        this.evaluator = new ExamEvaluatorInterface() {
+        this.evaluator = new ExamEvaluatorInterface() { // Anonym, da Klasse keinen eigenen Namen hat
             
             @Override 
             public int evaluate(int score) {
@@ -16,7 +16,7 @@ class UniversitySystem {
                     return 0; // Nicht bestanden
                 }
             }
-        }; 
+        }; // Semikolon wichtig
     }
 
     public void printResult(int studentScore) {
@@ -29,8 +29,9 @@ class UniversitySystem {
     }
     
     public static void main(String[] args) {
+
         UniversitySystem system = new UniversitySystem();
-        system.printResult(65); // wie vorher
+        system.printResult(65); // Testfall für "bestanden"
         system.printResult(45); // Testfall für "nicht bestanden"
     }
 }

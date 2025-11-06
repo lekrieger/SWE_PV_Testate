@@ -1,4 +1,4 @@
-// Ein n-dimensionales Volumen (Hyperrechteck), speichert intern die min-Ecke (a) und max-Ecke (b)
+// Ein n-dimensionales Volumen, speichert intern die min-Ecke (a) und max-Ecke (b)
 
 public class Volume extends Geometry {
 
@@ -39,7 +39,7 @@ public class Volume extends Geometry {
 
    @Override
    public double volume() {
-      // Volumen ist das Produkt aller Kantenlängen (a*b*c)
+      // Volumen ist das Produkt aller Kantenlängen
       double vol = 1.0;
       for (int i = 0; i < dimensions(); i++) {
          vol *= (b.getCoord(i) - a.getCoord(i));

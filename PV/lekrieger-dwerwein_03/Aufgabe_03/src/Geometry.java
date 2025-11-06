@@ -5,7 +5,7 @@
  * (Bearbeitet von Student)
  */
 
-public abstract class Geometry implements Comparable<Geometry> {
+public abstract class Geometry implements Comparable <Geometry> {
 
    /**
     * Holds the number of dimensions for this Geometry.
@@ -45,6 +45,7 @@ public abstract class Geometry implements Comparable<Geometry> {
     * @return volume of this Geometry
     */
 
+    
    public abstract double volume();
 
    /**
@@ -58,19 +59,15 @@ public abstract class Geometry implements Comparable<Geometry> {
     * @throws RuntimeException if the type of <code>other</code> is unknown
     */
 
-   public abstract Geometry encapsulate(Geometry other);
 
-   /**
-    * Vergleicht zwei Geometrien anhand ihres Volumens
-    * hier implementiert, damit es alle Subklassen haben
-    *
-    * @param o die andere Geometrie
-    * @return -1, 0 oder 1, je nach Volumenvergleich
-    */
+
+   public abstract Geometry encapsulate (Geometry other);
+
+   // Vergleicht zwei Geometrien anhand ihres Volumens; hier implementiert, damit es alle Subklassen haben
 
    @Override
-   public int compareTo(Geometry o) {
-      // Einfach Volumen vergleichen
+   public int compareTo (Geometry o) {
+      //  Volumen vergleichen
       return Double.compare(this.volume(), o.volume());
    }
 }
