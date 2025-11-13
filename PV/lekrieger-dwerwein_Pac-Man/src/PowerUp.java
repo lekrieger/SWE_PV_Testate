@@ -1,3 +1,4 @@
-public class PowerUp {
-
+public class PowerUp extends GameObject {
+    
 }
+

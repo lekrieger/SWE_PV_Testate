@@ -1,3 +1,3 @@
-public class Ghost {
+public class Ghost extends GameObject {
 
 }

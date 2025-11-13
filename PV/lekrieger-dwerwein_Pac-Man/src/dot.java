@@ -1,3 +1,3 @@
-public class dot {
+public class dot extends GameObject {
 
 }

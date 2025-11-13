@@ -5,11 +5,6 @@ public class Point extends Geometry {
    // Koordinaten speichern
    private double[] coords;
 
-   /**
-    * Varargs-Konstruktor für n-dimensionale Punkte
-    *
-    * @param coords die Koordinaten
-    */
 
    public Point(double... coords) {
       // Dimension ist die Anzahl der Koordinaten
