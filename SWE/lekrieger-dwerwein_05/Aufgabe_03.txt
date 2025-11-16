@@ -1,0 +1,52 @@
+
+Function Points Methode:
+
+a)
+Schritt 1 - Kategorisierung der Anforderungen & Zuordnung in Tabelle:
+
+        Funktion                    FP Element (Gewichtung)     UFP    
+    1. Kundenkontakte eingeben:     Eingabe (mittel)        --> 4
+    2. Kundenkontakte speichern:    Datenbestände (niedrig) --> 7
+    3. Kontaktdaten anzeigen:       Abfrage (hoch)          --> 6
+    4. Kundenübergreifende          Analysen: Ausgabe (hoch)--> 7
+                                                                24
+
+
+Schritt 2 - Einflussfaktoren einschätzen (14 Einflüsse):
+(0-5: kein, gelegentlicher, geringer, mittlerer, starker, kritischer Einfluss):
+
+Einflussfaktoren                        Gewichtung
+Komplexe Berechnungen:                  stark   --> 4
+Verschiedene technische Plattformen:    stark   --> 4
+End-User-Effizienz:                     kritisch--> 5
+AUSSERDEM:                          3x  stark   --> 12
+                                    2x  mittel  --> 6
+                                    2x  gering  --> 4
+                                    4x  ohne    --> 0
+GESAMT:                                             35
+
+
+Schritt 3 - Berechnung der Function Points:
+Formel zur Berechnung der Function Points: 
+FP = Anfangsgewichtung(UPF) * ((Einflussgrad * 0.01) + 0.65)
+24 * ((35 * 0.01) + 0.65) = 24
+
+
+Schritt 4 - Kostenberechnung:
+24 * 1020 = 24480€
+
+
+
+b)
+Steigende Function Points: 
+Personenmonate steigen exponentiell aufgrund des höheren Kommunikationsaufwands, da mehr Mitarbeiter am Projekt arbeiten
+
+Sinnvoll:
+- Am Anfang für eine grobe Planung von Dauer und Kosten eines Projekts 
+- Zur Dokumentierung innerhalb eines Unternehmens
+
+Nicht sinnvoll:
+- Für die detaillierte Planung eines Projekts
+- Vergleich von Mitarbeitern/Teams
+
+
