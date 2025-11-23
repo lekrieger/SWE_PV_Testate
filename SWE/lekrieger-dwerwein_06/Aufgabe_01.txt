@@ -1,0 +1,17 @@
+// Initiierung
+ziffer    = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+nichtNull = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"; 
+
+// Zahlen
+ganzeZahl = nichtNull , { ziffer };  // Zahl ohne führende Null 
+zaehler   = [ "-" ] , ( "0" | ganzeZahl ); // optionales Minuszeichen vorangestellt
+nenner    = [ "-" ] , ganzeZahl; // keine 0 im Nenner 
+
+// Operationen
+bruch     = zaehler , "/" , nenner;
+operator  = "+" | "-" | "*" | "/";
+leerzeichen      = " ";
+
+// eigentliche Logik
+element   = bruch | "(" , leerzeichen , rechnung , leerzeichen , ")"; // Bruch oder neue Klammerung, rekursiv rechnung aufrufen
+rechnung  = element , { leerzeichen , operator , leerzeichen , element }; //Wiederholungen möglich
