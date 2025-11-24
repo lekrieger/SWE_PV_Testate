@@ -1,9 +1,9 @@
 // Initiierung
 ziffer    = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-nichtNull = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"; 
+nichtNull = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";  // fürhende Null und alleinstehende 0 im Nenner verhindern
 
-// Zahlen
-ganzeZahl = nichtNull , { ziffer };  // Zahl ohne führende Null 
+// Zahlen definieren
+ganzeZahl = nichtNull , { ziffer };  // positive Ganzzahl muss ohne führende Null beginnen, danach kann beliebige Ziffer
 zaehler   = [ "-" ] , ( "0" | ganzeZahl ); // optionales Minuszeichen vorangestellt
 nenner    = [ "-" ] , ganzeZahl; // keine 0 im Nenner 
 
@@ -13,5 +13,5 @@ operator  = "+" | "-" | "*" | "/";
 leerzeichen      = " ";
 
 // eigentliche Logik
-element   = bruch | "(" , leerzeichen , rechnung , leerzeichen , ")"; // Bruch oder neue Klammerung, rekursiv rechnung aufrufen
-rechnung  = element , { leerzeichen , operator , leerzeichen , element }; //Wiederholungen möglich
+element   = bruch | "(" , leerzeichen , rechnung , leerzeichen , ")"; // entweder Bruch oder neue Klammerung, rekursiv rechnung aufrufen
+rechnung  = element , { leerzeichen , operator , leerzeichen , element }; //beliebig viele Wiederholungen möglich
