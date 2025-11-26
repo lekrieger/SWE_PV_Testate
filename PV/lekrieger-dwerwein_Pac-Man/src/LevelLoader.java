@@ -22,6 +22,8 @@ public class LevelLoader {
         while ((line = br.readLine()) != null) {
             lines.add(line);
         }
+        br.close();
+        
         // Höhe = Anzahl eingelesener Zeilen
         int height = lines.size();
         // Breite = Länge der allerersten Zeile
