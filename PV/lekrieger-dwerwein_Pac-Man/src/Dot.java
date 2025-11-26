@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Dot extends GameObject {
 
     @Override

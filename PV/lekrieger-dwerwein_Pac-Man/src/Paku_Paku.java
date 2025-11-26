@@ -12,5 +12,11 @@ public class Paku_Paku {
         frame.add(gamePanel); // GamePanel zum JFrame hinzufügen
         frame.pack(); // JFrame auf bevorzugte Größe setzen
         frame.setVisible(true); // JFrame sichtbar machen
+
+        Grid<GameObject> loadedGrid = LevelLoader.loadLevel("level1.txt");
+        gamePanel = new GamePanel(loadedGrid);
+        frame.add(gamePanel);
+        frame.pack();
+        frame.repaint();
     }
 }
