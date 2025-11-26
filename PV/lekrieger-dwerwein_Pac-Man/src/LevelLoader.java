@@ -44,7 +44,7 @@ public class LevelLoader {
                         obj = new Wall();
                         break;
                     case '.':
-                        obj = new dot();
+                        obj = new Dot();
                         break;
                     case 'P':
                         obj = new Player();
