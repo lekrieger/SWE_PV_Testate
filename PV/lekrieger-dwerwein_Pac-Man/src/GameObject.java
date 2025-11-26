@@ -10,7 +10,7 @@ public abstract class GameObject {
 
     protected abstract void move();
 
-    protected abstract void draw(java.awt.Graphics g); //Grpahics g wird übergeben, damit jedes GameObject sich selbst zeichnen kann
+    protected abstract void draw(Graphics g); //Grpahics (von java.awt.) g wird übergeben, damit jedes GameObject sich selbst zeichnen kann
 
     protected abstract void update();
 
