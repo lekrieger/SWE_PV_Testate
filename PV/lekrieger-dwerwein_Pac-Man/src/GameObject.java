@@ -1,11 +1,21 @@
-public class GameObject {
+import java.awt.*;
+
+public abstract class GameObject {
+
+    protected int x;
+    protected int y;    
 
 
     // Methoden für alle GameObjects
 
-    protected void move() {
+    protected abstract void move();
 
+    protected abstract void draw(java.awt.Graphics g);
+
+    protected abstract void update();
+
+    public Point getPosition() {
+        return new Point(x, y);
     }
-
 
 }
