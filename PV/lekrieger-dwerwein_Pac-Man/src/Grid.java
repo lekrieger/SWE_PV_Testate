@@ -31,14 +31,13 @@ public class Grid<T extends GameObject> extends GameObject {
         spielfeld[row][col] = obj;
 
         if (obj != null) {
-            obj.x = row;; 
-            obj.y = col;
+            obj.y = row;; 
+            obj.x = col;
 
             if (obj instanceof Player) {
                 this.player = obj; // Player-Referenz speichern
             }
-        }
-        
+        }        
     }
     
     public synchronized T getCell(int row, int col) {

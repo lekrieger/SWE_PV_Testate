@@ -8,7 +8,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel(Grid<GameObject> grid) {
         this.grid = grid;
-        setPreferredSize(new Dimension(grid.getRows() * scale, grid.getCols() * scale)); // Größe des Panels basierend auf Grid-Größe (Skalierung der Levelgröße * scale Pixel pro Zelle)
+        setPreferredSize(new Dimension(grid.getCols() * scale, grid.getRows() * scale)); // Größe des Panels basierend auf Grid-Größe (Skalierung der Levelgröße * scale Pixel pro Zelle)
         setBackground(Color.BLACK);
     }
 
