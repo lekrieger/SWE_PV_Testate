@@ -57,11 +57,6 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     @Override
-    protected synchronized void move() {
-        // Logik zur Bewegung des Grids, falls erforderlich
-    }
-
-    @Override
     protected synchronized void draw(java.awt.Graphics g) {
         
         for (int row = 0; row < rows; row++) { // doppelte Schleife, geht Zeile für Zeile von links nach rechts durch
@@ -75,7 +70,7 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     // Methode zur Bewegung des Players im Grid
-    public synchronized void movePlayer(int deltaX, int deltaY) throws InvalidMoveException {
+    public synchronized void move(int deltaX, int deltaY) throws InvalidMoveException {
         int targetX = this.player.x + deltaX;
         int targetY = this.player.y + deltaY;
 
