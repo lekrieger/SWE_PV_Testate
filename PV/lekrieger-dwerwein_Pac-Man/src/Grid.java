@@ -70,7 +70,7 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     // Methode zur Bewegung des Players im Grid
-    public synchronized void move(int deltaX, int deltaY) throws InvalidMoveException {
+    public synchronized void movePlayer(int deltaX, int deltaY) throws InvalidMoveException {
         int targetX = this.player.x + deltaX;
         int targetY = this.player.y + deltaY;
 
