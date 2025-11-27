@@ -1,5 +1,5 @@
 import javax.swing.JPanel;
-import java.awt.Dimension;
+import java.awt.*;
 
 public class GamePanel extends JPanel {
     
@@ -9,7 +9,10 @@ public class GamePanel extends JPanel {
     public GamePanel(Grid<GameObject> grid) {
         this.grid = grid;
         setPreferredSize(new Dimension(grid.getCols() * scale, grid.getRows() * scale)); // Größe des Panels basierend auf Grid-Größe (Skalierung der Levelgröße * scale Pixel pro Zelle)
+        setBackground(Color.BLACK);
     }
+
+
 
     @Override
     protected void paintComponent(java.awt.Graphics g) {
