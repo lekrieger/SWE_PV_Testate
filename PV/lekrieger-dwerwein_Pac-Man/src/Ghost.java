@@ -7,7 +7,7 @@ public class Ghost extends GameObject {
         g.setColor(Color.RED);
         
         int s = GamePanel.scale; 
-        g.fillRect(x * s, y * s, s, s);
+        g.fillRect(x * s + s/10, y * s + s/10, s * 4/5, s * 4/5);
     }
 
     @Override
