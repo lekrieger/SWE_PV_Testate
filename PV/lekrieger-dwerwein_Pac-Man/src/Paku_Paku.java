@@ -1,3 +1,5 @@
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -24,6 +26,26 @@ public class Paku_Paku {
             window.add(panel);
             window.pack(); // Fenstergröße passt sich automatisch an das Panel (Grid * 20px) an
             window.setLocationRelativeTo(null); // zentriert das Fenster
+            window.addKeyListener(new KeyAdapter() { // Tastatureingaben abfangen
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    try {
+                        if (e.getKeyCode() == KeyEvent.VK_UP) {
+                            grid.movePlayer(0, -1);
+                        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                            grid.movePlayer(0, 1);
+                        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                            grid.movePlayer(-1, 0);
+                        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                            grid.movePlayer(1, 0);
+                        }
+                    } catch (InvalidMoveException ime) {
+                    System.out.println("Bong!");
+                    };
+                    panel.repaint(); // Panel neu zeichnen, damit die Bewegung sichtbar wird
+                }
+            });
+
             window.setVisible(true);
 
             GameLoop loop = new GameLoop(grid, panel); // GameLoop erstellen
