@@ -14,6 +14,8 @@ public class Grid<T extends GameObject> extends GameObject {
     private int nextDeltaX = 0; // nächste X-Richtung für den Player
     private int nextDeltaY = 0; // nächste Y-Richtung für den Player
     private volatile boolean isRunning = true; // Spiel läuft oder nicht
+    private int playerMoveCounter = 0;
+    private final int player_speed = 2; // 1 = schnell, 2 = normal, 3 = langsam
 
     // 2D-Array (so groß wie das Spielfeld) zur Speicherung der Schrittanzahl für Ameisen
     // Ameisen schreiben, wie viele Schritte sie zu dieser Zelle gebraucht haben
@@ -108,7 +110,11 @@ public class Grid<T extends GameObject> extends GameObject {
     @Override
     public void update() throws GameOverException { //public, damit alle Klassen die Methode aufrufen können
 
-        tryMovePlayer(); // Spielerbewegung versuchen
+        playerMoveCounter++;
+        if (playerMoveCounter >= player_speed) {
+            tryMovePlayer(); // Spielerbewegung versuchen
+            playerMoveCounter = 0;
+            }
         
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
