@@ -59,7 +59,7 @@ public class LevelLoader {
                         break;
                 }
 
-                // GameObject im Grid an der Position (x, y) speichern
+                // GameObject im Grid an der Position (y, x) speichern
                 grid.setCell(y, x, obj);
             }
         }     
