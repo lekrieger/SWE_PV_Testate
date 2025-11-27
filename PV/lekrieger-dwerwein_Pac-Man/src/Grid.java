@@ -93,7 +93,7 @@ public class Grid<T extends GameObject> extends GameObject {
         this.nextDeltaY = deltaY;
     }
 
-    public void tryMovePlayer() {
+    public void tryMovePlayer() throws GameOverException {
         if (nextDeltaX != 0 || nextDeltaY != 0) {
             try {
                 movePlayer(nextDeltaX, nextDeltaY);
@@ -102,14 +102,14 @@ public class Grid<T extends GameObject> extends GameObject {
                 this.nextDeltaX = 0;
                 this.nextDeltaY = 0;
             }
-            catch (GameOverException goe) {
-                stopGame();
-            }
         }
     }
 
     @Override
     public void update() throws GameOverException { //public, damit alle Klassen die Methode aufrufen können
+
+        tryMovePlayer(); // Spielerbewegung versuchen
+        
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 T obj = spielfeld[row][col];

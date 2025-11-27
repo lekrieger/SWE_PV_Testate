@@ -18,7 +18,7 @@ public class Paku_Paku {
 
         try {
             // Level laden
-            Grid<GameObject> grid = LevelLoader.loadLevel("PV/lekrieger-dwerwein_Pac-Man/Levels/level1.txt");
+            Grid<GameObject> grid = LevelLoader.loadLevel("PV/lekrieger-dwerwein_Pac-Man/Levels/level2.txt");
 
             // Panel erstellen und Grid übergeben
             GamePanel panel = new GamePanel(grid);
