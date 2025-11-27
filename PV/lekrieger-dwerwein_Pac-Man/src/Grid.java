@@ -9,12 +9,21 @@ public class Grid<T extends GameObject> extends GameObject {
     private int cols;   // Anzahl der Spalten im Grid
     private T player; // Referenz auf das Player-Objekt im Grid
 
+    // 2D-Array (so groß wie das Spielfeld) zur Speicherung der Schrittanzahl für Ameisen
+    // Ameisen schreiben, wie viele Schritte sie zu dieser Zelle gebraucht haben
+    // 0 = noch nicht besucht
+    private int[][] stepCount; 
+
     // Konstruktor
     public Grid(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
         // Initialisierung des 2D-Arrays / Spielfelds
         spielfeld = (T[][]) new GameObject[rows][cols];
+
+        // Initialisierung des Schrittzählers für Ameisen
+        // merkt sich Koordinaten und die dazugehörige Schrittzahl
+        stepCount = new int[rows][cols]; 
     }
 
     // Getter für rows und cols
@@ -90,6 +99,47 @@ public class Grid<T extends GameObject> extends GameObject {
             this.player.y = targetY;
             setCell(targetY, targetX, this.player); // Player an neuer Position setzen
         }
+    }
+
+    // Schritte auf 0 zurücksetzen, um neue Berechnung zu starten
+    public synchronized void resetSteps() {
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < cols; x++) {
+                stepCount[y][x] = 0;
+            }
+        }
+    }
+
+    public synchronized boolean setStepIfShorter(int y, int x, int steps) {
+        // testen, ob das Feld im Grid ist
+        if (x < 0 || x >= cols || y < 0 || y >= rows) {
+            return false;
+        }       
+
+        // schaut, ob die Zelle des Spielfelds eine Wand ist
+        if (spielfeld[y][x] instanceof Wall) {
+            return false;
+        }
+        
+        // 0 = noch nicht besucht
+        // wenn noch nicht besucht, dann Schrittanzahl setzen
+        // stepCount = Speicher bzw bisheriger Wert
+        // currentSteps kopiert von stepCount
+        // kürzerer Weg, wenn eigene steps < currentSteps
+        // wenn Weg kürzer ist, wird stepCount von den eigenen steps überschrieben
+        int currentSteps = stepCount[y][x];
+        if (currentSteps == 0 || steps < currentSteps) {
+            stepCount[y][x] = steps;
+            return true; // kürzerer Weg gefunden
+        }       
+        return false; // Ameise stirbt
+    }
+
+    public synchronized int getStep(int y, int x) {
+        if (x < 0 || x >= cols || y < 0 || y >= rows) {
+                return 0;
+            }
+        return stepCount[y][x];
     }
 
 }
