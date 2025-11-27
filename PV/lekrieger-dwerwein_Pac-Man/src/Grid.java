@@ -25,7 +25,8 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     // beim Setter das zu übergebende Objekt im 2D-Array speichern
-    public void setCell(int row, int col, T obj) {
+    // synchronized, damit nur ein Thread gleichzeitig auf die Methode zugreifen kann
+    public synchronized void setCell(int row, int col, T obj) {
         spielfeld[row][col] = obj;
 
         if (obj != null) {
@@ -33,22 +34,30 @@ public class Grid<T extends GameObject> extends GameObject {
             obj.y = row;
         }
     }
-    public T getCell(int row, int col) {
+    
+    public synchronized T getCell(int row, int col) {
         return spielfeld[row][col];
     }
 
     @Override
-    public void update() { //public, damit alle Klassen die Methode aufrufen können
-        // Logik zur Aktualisierung des Grids, falls erforderlich
+    public synchronized void update() { //public, damit alle Klassen die Methode aufrufen können
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                T obj = spielfeld[row][col];
+                if (obj != null) { // nur wenn ein Objekt in der Zelle ist
+                    obj.update(); // Jedes Objekt darf seine Logik ausführen
+                }
+            }
+        }
     }
 
     @Override
-    protected void move() {
+    protected synchronized void move() {
         // Logik zur Bewegung des Grids, falls erforderlich
     }
 
     @Override
-    protected void draw(java.awt.Graphics g) {
+    protected synchronized void draw(java.awt.Graphics g) {
         
         for (int row = 0; row < rows; row++) { // doppelte Schleife, geht Zeile für Zeile von links nach rechts durch
             for (int col = 0; col < cols; col++) {
