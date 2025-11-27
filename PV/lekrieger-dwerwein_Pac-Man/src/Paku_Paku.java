@@ -77,7 +77,7 @@ public class Paku_Paku {
         // Highscore in Datei speichern
         try (java.io.ObjectOutputStream out = new java.io.ObjectOutputStream(new java.io.FileOutputStream("highscore.dat"))) {
             out.writeObject(data);
-            System.out.println("Highscore gespeichert: " + score);
+            System.out.println("Score: " + score);
         } catch (IOException e) {
             e.printStackTrace();
         }
