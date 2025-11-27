@@ -84,21 +84,21 @@ public class Paku_Paku {
     }
 
     private static int loadHighscore() {
-    try (java.io.ObjectInputStream in = new java.io.ObjectInputStream(new java.io.FileInputStream("highscore.dat"))) {
-        
-        // 1. Objekt aus der Datei lesen und in Variable speichern
-        HighscoreData data = (HighscoreData) in.readObject();
-        return data.score;
+        try (java.io.ObjectInputStream in = new java.io.ObjectInputStream(new java.io.FileInputStream("highscore.dat"))) {
+            
+            // 1. Objekt aus der Datei lesen und in Variable speichern
+            HighscoreData data = (HighscoreData) in.readObject();
+            return data.score;
 
-    } catch (java.io.FileNotFoundException e) {
-        // Datei existiert nicht -> Erster Start
-        return 0; 
+        } catch (java.io.FileNotFoundException e) {
+            // Datei existiert nicht -> Erster Start
+            return 0; 
 
-    } catch (java.io.IOException | ClassNotFoundException e) {
-        // Lese- oder Formatfehler
-        System.err.println("FEHLER: Highscore-Datei beschädigt.");
-        return 0; 
+        } catch (java.io.IOException | ClassNotFoundException e) {
+            // Lese- oder Formatfehler
+            System.err.println("FEHLER: Highscore-Datei beschädigt.");
+            return 0; 
+        }
     }
-}
 }
 

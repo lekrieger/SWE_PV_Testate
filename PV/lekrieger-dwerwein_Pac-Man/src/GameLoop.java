@@ -21,7 +21,7 @@ public class GameLoop implements Runnable {
             } 
             catch (GameOverException e) {
                 System.out.println(e.getMessage());
-                running = false; // Spiel beenden, wenn GameOverException geworfen
+                grid.isRunning() = false; // Spiel beenden, wenn GameOverException geworfen
                 // panel.showGameOverMessage();
             }               
             catch (InterruptedException e) {
