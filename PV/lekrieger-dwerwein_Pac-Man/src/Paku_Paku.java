@@ -18,7 +18,7 @@ public class Paku_Paku {
 
         try {
             // Level laden
-            Grid<GameObject> grid = LevelLoader.loadLevel("PV/lekrieger-dwerwein_Pac-Man/Levels/level2.txt");
+            Grid<GameObject> grid = LevelLoader.loadLevel("PV/lekrieger-dwerwein_Pac-Man/Levels/level1.txt");
 
             // Panel erstellen und Grid übergeben
             GamePanel panel = new GamePanel(grid);
@@ -34,29 +34,23 @@ public class Paku_Paku {
                 
                 @Override
                 public void keyPressed(KeyEvent e) {
-                    try {
-                        if (e.getKeyCode() == KeyEvent.VK_UP) {
-                            grid.movePlayer(0, -1);
-                        } 
-                        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                            grid.movePlayer(0, 1);
-                        } 
-                        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                            grid.movePlayer(-1, 0);
-                        } 
-                        else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            grid.movePlayer(1, 0);
-                        }
-                        else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                            saveHighscore(grid.getScore());
-                        }
+
+                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                        grid.setNextDirection(0, -1);
                     } 
-                    catch (InvalidMoveException ime) {
-                    System.out.println("Bong!");
+                    else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                        grid.setNextDirection(0, 1);
+                    } 
+                    else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                        grid.setNextDirection(1, 0);
+                    } 
+                    else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        grid.setNextDirection(1, 0);
                     }
-                    catch (GameOverException goe) {
-                        System.out.println(goe.getMessage());
-                    }    
+                    else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        saveHighscore(grid.getScore());
+                    }
+
                     panel.repaint(); // Panel neu zeichnen, damit die Bewegung sichtbar wird
                 }
             });
@@ -76,7 +70,7 @@ public class Paku_Paku {
     }
 
     // Methode zum Speichern des Highscores
-    private static void saveHighscore(int score) {
+    public static void saveHighscore(int score) {
         HighscoreData data = new HighscoreData();
         data.score = score;
 

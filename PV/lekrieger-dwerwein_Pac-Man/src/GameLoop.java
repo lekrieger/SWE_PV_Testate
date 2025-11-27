@@ -2,7 +2,6 @@ public class GameLoop implements Runnable {
 
     private Grid<GameObject> grid;
     private GamePanel panel;
-    private boolean running = true;
 
     public GameLoop(Grid<GameObject> grid, GamePanel panel) {
         this.grid = grid;
@@ -12,7 +11,9 @@ public class GameLoop implements Runnable {
     public void run() {
 
         // Endlosschleife für das Spiel, bis running auf false (GameOver) gesetzt wird
-        while (running == true) {
+        while (grid.isRunning() == true) {
+            grid.update(); // alle GameObjects im Grid updaten
+            panel.repaint(); // GamePanel neu zeichnen / aktualisieren
             try {
                 grid.update(); // alle GameObjects im Grid updaten
                 panel.repaint(); // GamePanel neu zeichnen / aktualisieren
@@ -27,5 +28,6 @@ public class GameLoop implements Runnable {
                 e.printStackTrace();
             }
         }
+        Paku_Paku.saveHighscore(grid.getHighscore()); // Highscore speichern, wenn das Spiel endet
     }
 }

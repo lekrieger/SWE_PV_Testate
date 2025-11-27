@@ -9,6 +9,8 @@ public class LevelLoader {
     // liest Level-Datei (String path) und erstellt daraus das Spielfeld als Grid<GameObject>
     public static Grid<GameObject> loadLevel(String path) throws IOException {
 
+        int totalDots = 0;
+
         // öffnet die Datei zum Lesen
         // BufferedReader liest effizient ganze Zeilen auf einmal 
         BufferedReader br = new BufferedReader(new FileReader(path));
@@ -47,6 +49,7 @@ public class LevelLoader {
                         break;
                     case '.':
                         obj = new Dot();
+                        totalDots++;
                         break;
                     case 'P':
                         obj = new Player();
@@ -60,11 +63,13 @@ public class LevelLoader {
                         obj = null; // leere Zelle
                         break;
                 }
-
                 // GameObject im Grid an der Position (y, x) speichern
                 grid.setCell(y, x, obj);
             }
-        }     
+        }    
+        // Gesamtanzahl der Punkte im Level im Grid speichern
+        grid.setTotalDots(totalDots);
+
         return grid;
     }
 }

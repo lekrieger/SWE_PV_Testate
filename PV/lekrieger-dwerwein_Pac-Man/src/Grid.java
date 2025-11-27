@@ -10,6 +10,10 @@ public class Grid<T extends GameObject> extends GameObject {
     private T player; // Referenz auf das Player-Objekt im Grid
     private int score = 0; // Punktestand
     private int highscore = 0; // Höchster Punktestand
+    private int totalDots = 0; // Gesamtanzahl der Punkte im Level
+    private int nextDeltaX = 0; // nächste X-Richtung für den Player
+    private int nextDeltaY = 0; // nächste Y-Richtung für den Player
+    private volatile boolean isRunning = true; // Spiel läuft oder nicht
 
     // 2D-Array (so groß wie das Spielfeld) zur Speicherung der Schrittanzahl für Ameisen
     // Ameisen schreiben, wie viele Schritte sie zu dieser Zelle gebraucht haben
@@ -50,21 +54,48 @@ public class Grid<T extends GameObject> extends GameObject {
             }
         }        
     }
-    
     public synchronized T getCell(int row, int col) {
         return spielfeld[row][col];
     }
 
+    // Aktuellen Punktestand holen
     public int getScore() {
         return score;
     }
 
+    // Aktuellen Highscore setzen
     public void setHighscore(int highscore) {
         this.highscore = highscore;
     }
 
+    // Aktuellen Highscore holen
     public int getHighscore() {
         return highscore;
+    }
+
+    // Gesamtanzahl der Punkte im Level setzen
+    public void setTotalDots(int totalDots) {
+        this.totalDots = totalDots;
+    }
+
+    // Prüfen, ob das Spiel noch läuft
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setNextDirection(int deltaX, int deltaY) {
+        this.nextDeltaX = deltaX;
+        this.nextDeltaY = deltaY;
+    }
+
+    public void tryMovePlayer() {
+        try {
+            movePlayer(nextDeltaX, nextDeltaY);
+        } 
+        catch (InvalidMoveException ime) {
+            this.nextDeltaX = 0;
+            this.nextDeltaY = 0;
+        }
     }
 
     @Override
@@ -111,6 +142,18 @@ public class Grid<T extends GameObject> extends GameObject {
             this.player.x = targetX;
             this.player.y = targetY;
             setCell(targetY, targetX, this.player); // Player an neuer Position setzen
+
+            // Punkt wurde eingesammelt, Level abgeschlossen
+            if (this.score == this.totalDots * 10) {
+                System.out.println("Level abgeschlossen! Endpunktestand: " + this.score);
+
+                // Highscore prüfen und ggf. aktualisieren
+                if (this.score > this.highscore) {
+                    this.highscore = this.score;
+                    System.out.println("Neuer Highscore: " + this.highscore);
+                }
+                isRunning = false; // Spiel stoppen
+            }
         }
         else {
 
