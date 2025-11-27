@@ -31,7 +31,7 @@ public class Grid<T extends GameObject> extends GameObject {
         spielfeld[row][col] = obj;
 
         if (obj != null) {
-            obj.x = col; 
+            obj.x = col;; 
             obj.y = row;
 
             if (obj instanceof Player) {
@@ -83,12 +83,13 @@ public class Grid<T extends GameObject> extends GameObject {
         T targetObj = getCell(targetX, targetY);
         if (targetObj instanceof Wall) {    // Kollision mit Wand
             throw new InvalidMoveException("Bong!");
-        } else {
+        } 
+        else {
             // Player an die neue Position bewegen
-            setCell(this.player.y, this.player.x, null); // alte Position leeren
+            setCell(this.player.x, this.player.y, null); // alte Position leeren
             this.player.x = targetX;
             this.player.y = targetY;
-            setCell(targetY, targetX, this.player); // Player an neuer Position setzen
+            setCell(targetX, targetY, this.player); // Player an neuer Position setzen
         }
     }
 
