@@ -28,10 +28,25 @@ public class Ameise implements Runnable {
                 Ameise neueAmeise = new Ameise(grid, newX, newY, steps + 1);
                 neueAmeisen.add(neueAmeise);
             }
-            
-            Thread ameisenThread = new Thread(neueAmeise);
-            ameisenThread.start();
-            
+        }   
+
+        // neuer Weg gefunden?
+        if (!neueAmeisen.isEmpty()) {
+                
+            // weitere Wege als neue Threads starten
+            for (int i = 1; i < neueAmeisen.size(); i++) {
+                Thread t = new Thread(neueAmeisen.get(i));
+                t.start();
+            }
+
+            // ersten Weg selbst gehen
+            Ameise meinWeg = neueAmeisen.get(0);
+            this.x = meinWeg.x;
+            this.y = meinWeg.y;
+            this.steps = meinWeg.steps;
+
+            run(); 
+                    
         }
     }
 }

@@ -52,7 +52,9 @@ public class LevelLoader {
                         obj = new Player();
                         break;
                     case 'G':
-                        obj = new Ghost();
+                        Ghost g = new Ghost();
+                        g.setGrid(grid); // Grid dem Geist übergeben
+                        obj = g;
                         break;
                     default:
                         obj = null; // leere Zelle

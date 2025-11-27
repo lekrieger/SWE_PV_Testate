@@ -122,7 +122,7 @@ public class Grid<T extends GameObject> extends GameObject {
         }
     }
 
-    // Schritte auf 0 zurücksetzen, um neue Berechnung zu starten
+    // Schritte der Ameise auf 0 zurücksetzen, um neue Berechnung zu starten
     public synchronized void resetSteps() {
         for (int y = 0; y < rows; y++) {
             for (int x = 0; x < cols; x++) {
