@@ -83,18 +83,28 @@ public class Grid<T extends GameObject> extends GameObject {
         return isRunning;
     }
 
+    // Spiel stoppen
+    public void stopGame() {
+        this.isRunning = false;
+    }
+
     public void setNextDirection(int deltaX, int deltaY) {
         this.nextDeltaX = deltaX;
         this.nextDeltaY = deltaY;
     }
 
     public void tryMovePlayer() {
-        try {
-            movePlayer(nextDeltaX, nextDeltaY);
-        } 
-        catch (InvalidMoveException ime) {
-            this.nextDeltaX = 0;
-            this.nextDeltaY = 0;
+        if (nextDeltaX != 0 || nextDeltaY != 0) {
+            try {
+                movePlayer(nextDeltaX, nextDeltaY);
+            } 
+            catch (InvalidMoveException ime) {
+                this.nextDeltaX = 0;
+                this.nextDeltaY = 0;
+            }
+            catch (GameOverException goe) {
+                stopGame();
+            }
         }
     }
 
@@ -152,7 +162,7 @@ public class Grid<T extends GameObject> extends GameObject {
                     this.highscore = this.score;
                     System.out.println("Neuer Highscore: " + this.highscore);
                 }
-                isRunning = false; // Spiel stoppen
+                stopGame(); // Spiel stoppen
             }
         }
         else {

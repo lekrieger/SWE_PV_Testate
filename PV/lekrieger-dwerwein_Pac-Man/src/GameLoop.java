@@ -12,16 +12,15 @@ public class GameLoop implements Runnable {
 
         // Endlosschleife für das Spiel, bis running auf false (GameOver) gesetzt wird
         while (grid.isRunning() == true) {
-            grid.update(); // alle GameObjects im Grid updaten
-            panel.repaint(); // GamePanel neu zeichnen / aktualisieren
             try {
+                grid.tryMovePlayer(); // Spielerbewegung versuchen
                 grid.update(); // alle GameObjects im Grid updaten
                 panel.repaint(); // GamePanel neu zeichnen / aktualisieren
                 Thread.sleep(100); // 100ms Pause zwischen den Updates, damit das Spiel nicht zu schnell läuft
             } 
             catch (GameOverException e) {
                 System.out.println(e.getMessage());
-                grid.isRunning() = false; // Spiel beenden, wenn GameOverException geworfen
+                grid.stopGame(); // Spiel beenden, wenn GameOverException geworfen
                 // panel.showGameOverMessage();
             }               
             catch (InterruptedException e) {

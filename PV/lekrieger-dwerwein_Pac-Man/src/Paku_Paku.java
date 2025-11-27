@@ -42,7 +42,7 @@ public class Paku_Paku {
                         grid.setNextDirection(0, 1);
                     } 
                     else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        grid.setNextDirection(1, 0);
+                        grid.setNextDirection(-1, 0);
                     } 
                     else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                         grid.setNextDirection(1, 0);
