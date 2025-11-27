@@ -5,7 +5,8 @@ public class Wall extends GameObject {
     @Override
     protected void draw(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(x, y, 20, 20);
+        int s = GamePanel.scale; 
+        g.fillRect(x * s, y * s, s, s);
     }
 
     @Override

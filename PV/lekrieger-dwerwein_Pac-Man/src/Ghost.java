@@ -5,7 +5,9 @@ public class Ghost extends GameObject {
     @Override
     protected void draw(Graphics g) {
         g.setColor(Color.RED);
-        g.fillOval(x+1, y+1, 18, 18);
+        
+        int s = GamePanel.scale; 
+        g.fillRect(x * s, y * s, s, s);
     }
 
     @Override

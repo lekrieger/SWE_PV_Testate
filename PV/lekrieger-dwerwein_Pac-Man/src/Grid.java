@@ -27,6 +27,11 @@ public class Grid<T extends GameObject> extends GameObject {
     // beim Setter das zu übergebende Objekt im 2D-Array speichern
     public void setCell(int row, int col, T obj) {
         spielfeld[row][col] = obj;
+
+        if (obj != null) {
+            obj.x = col; 
+            obj.y = row;
+        }
     }
     public T getCell(int row, int col) {
         return spielfeld[row][col];

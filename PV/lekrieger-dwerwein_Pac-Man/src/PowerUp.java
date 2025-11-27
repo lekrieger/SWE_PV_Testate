@@ -5,7 +5,8 @@ public class PowerUp extends GameObject {
     @Override
     protected void draw(Graphics g) {
         g.setColor(Color.BLUE);
-        g.fillOval(x, y, 10, 10);
+        int s = GamePanel.scale; 
+        g.fillRect(x * s, y * s, s, s);
     }
 
     @Override

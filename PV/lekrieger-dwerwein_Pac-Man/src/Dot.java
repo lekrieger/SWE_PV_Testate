@@ -5,7 +5,8 @@ public class Dot extends GameObject {
     @Override
     protected void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillOval(x+8, y+8, 4, 4);
+        int s = GamePanel.scale; 
+        g.fillRect(x * s, y * s, s, s);
     }
 
     @Override
