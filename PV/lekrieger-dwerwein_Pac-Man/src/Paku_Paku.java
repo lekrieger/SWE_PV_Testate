@@ -33,16 +33,16 @@ public class Paku_Paku {
                 public void keyPressed(KeyEvent e) {
                     try {
                         if (e.getKeyCode() == KeyEvent.VK_UP) {
-                            grid.movePlayer(0, -1);
+                            grid.move(0, -1);
                         } 
                         else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                            grid.movePlayer(0, 1);
+                            grid.move(0, 1);
                         } 
                         else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                            grid.movePlayer(-1, 0);
+                            grid.move(-1, 0);
                         } 
                         else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                            grid.movePlayer(1, 0);
+                            grid.move(1, 0);
                         }
                     } 
                     catch (InvalidMoveException ime) {
