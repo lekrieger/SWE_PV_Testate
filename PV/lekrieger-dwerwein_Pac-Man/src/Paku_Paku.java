@@ -27,6 +27,7 @@ public class Paku_Paku {
             window.pack(); // Fenstergröße passt sich automatisch an das Panel (Grid * 20px) an
             window.setLocationRelativeTo(null); // zentriert das Fenster
             window.addKeyListener(new KeyAdapter() { // Tastatureingaben abfangen
+                
                 @Override
                 public void keyPressed(KeyEvent e) {
                     try {
