@@ -31,8 +31,8 @@ public class Grid<T extends GameObject> extends GameObject {
         spielfeld[row][col] = obj;
 
         if (obj != null) {
-            obj.x = col;; 
-            obj.y = row;
+            obj.x = row;; 
+            obj.y = col;
 
             if (obj instanceof Player) {
                 this.player = obj; // Player-Referenz speichern
