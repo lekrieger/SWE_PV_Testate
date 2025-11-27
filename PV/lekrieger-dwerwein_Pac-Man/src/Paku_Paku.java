@@ -7,7 +7,8 @@ public class Paku_Paku {
     
     public static void main(String[] args) throws Exception {
         
-        System.out.println("Ich suche in: " + new java.io.File(".").getAbsolutePath());
+        // System.out.println("aktueller Pfad: " + new java.io.File(".").getAbsolutePath());
+
         // JFrame vorbereiten
         JFrame window = new JFrame("Paku Paku");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,7 +29,7 @@ public class Paku_Paku {
 
         } catch (IOException e) {
             // Fehlerbehandlung
-            System.err.println("FEHLER: Konnte Level-Datei nicht laden!");
+            System.err.println("error: Level-Datei konnte nicht geladen werden");
             e.printStackTrace();
         }
     }
