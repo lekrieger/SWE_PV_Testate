@@ -31,8 +31,8 @@ public class Grid<T extends GameObject> extends GameObject {
         spielfeld[row][col] = obj;
 
         if (obj != null) {
-            obj.y = row;; 
-            obj.x = col;
+            obj.x = col; 
+            obj.y = row;
 
             if (obj instanceof Player) {
                 this.player = obj; // Player-Referenz speichern
@@ -79,7 +79,7 @@ public class Grid<T extends GameObject> extends GameObject {
         int targetX = this.player.x + deltaX;
         int targetY = this.player.y + deltaY;
 
-        T targetObj = getCell(targetX, targetY);
+        T targetObj = getCell(targetY, targetX);
         if (targetObj instanceof Wall) {    // Kollision mit Wand
             throw new InvalidMoveException("Bong!");
         } 
