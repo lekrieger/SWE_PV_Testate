@@ -26,7 +26,12 @@ public class Paku_Paku {
             window.setLocationRelativeTo(null); // zentriert das Fenster
             window.setVisible(true);
 
-        } catch (IOException e) {
+            GameLoop loop = new GameLoop(grid, panel); // GameLoop erstellen
+            Thread gameThread = new Thread(loop); // neuen Thread für die GameLoop erstellen
+            gameThread.start();
+
+        } 
+        catch (IOException e) {
             // Fehlerbehandlung
             System.err.println("error: Level-Datei konnte nicht geladen werden");
             e.printStackTrace();
