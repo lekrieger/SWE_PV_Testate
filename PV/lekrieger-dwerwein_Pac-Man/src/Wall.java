@@ -7,4 +7,14 @@ public class Wall extends GameObject {
         g.setColor(Color.GRAY);
         g.fillRect(x, y, 20, 20);
     }
+
+    @Override
+    protected void update() {
+        // Wall-Logik hier implementieren (falls nötig)
+    }   
+
+    @Override
+    protected void move() {
+        // Wände bewegen sich nicht, daher bleibt diese Methode leer
+    }
 }

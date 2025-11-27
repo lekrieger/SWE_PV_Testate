@@ -11,11 +11,12 @@ public class Paku_Paku {
         // JFrame vorbereiten
         JFrame window = new JFrame("Paku Paku");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false); // Feste Größe 
+        window.setResizable(true); // Feste Größe 
 
         try {
             // Level laden
-            Grid<GameObject> grid = LevelLoader.loadLevel("PV/lekrieger-dwerwein_Pac-Man/Levels/level1.txt");
+            Grid<GameObject> grid = LevelLoader.loadLevel("Levels/level1.txt");
+            //Grid<GameObject> grid = LevelLoader.loadLevel("PV/lekrieger-dwerwein_Pac-Man/Levels/level1.txt");
 
             // Panel erstellen und Grid übergeben
             GamePanel panel = new GamePanel(grid);
