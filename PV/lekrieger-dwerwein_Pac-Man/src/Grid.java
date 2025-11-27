@@ -1,12 +1,13 @@
 public class Grid<T extends GameObject> extends GameObject {
     // T als generischer Typ, der von GameObject erbt
-    // T als Plathalter für alle GameObject-Typen (z.B. Ghost, Player, Wall etc.)
+    // T als Plathalter für alle GameObject-Typen (z.B. Ghost, Player, Wall, Dot, PowerUp)
     // Grid selbst ist ein GameObject
 
     // Attribute
     private T[][] spielfeld; // 2D-Array (Gitter) von Zellen des Typs T
     private int rows;   // Anzahl der Reihen im Grid
     private int cols;   // Anzahl der Spalten im Grid
+    private T player; // Referenz auf das Player-Objekt im Grid
 
     // Konstruktor
     public Grid(int rows, int cols) {
@@ -32,7 +33,12 @@ public class Grid<T extends GameObject> extends GameObject {
         if (obj != null) {
             obj.x = col; 
             obj.y = row;
+
+            if (obj instanceof Player) {
+                this.player = obj; // Player-Referenz speichern
+            }
         }
+        
     }
     
     public synchronized T getCell(int row, int col) {
@@ -66,6 +72,23 @@ public class Grid<T extends GameObject> extends GameObject {
                     obj.draw(g); // jedes GameObject im Grid zeichnet sich selbst
                 }
             }
+        }
+    }
+
+    // Methode zur Bewegung des Players im Grid
+    public synchronized void movePlayer(int deltaX, int deltaY) throws InvalidMoveException {
+        int targetX = this.player.x + deltaX;
+        int targetY = this.player.y + deltaY;
+
+        T targetObj = getCell(targetX, targetY);
+        if (targetObj instanceof Wall) {    // Kollision mit Wand
+            throw new InvalidMoveException("Bong!");
+        } else {
+            // Player an die neue Position bewegen
+            setCell(this.player.y, this.player.x, null); // alte Position leeren
+            this.player.x = targetX;
+            this.player.y = targetY;
+            setCell(targetY, targetX, this.player); // Player an neuer Position setzen
         }
     }
 
