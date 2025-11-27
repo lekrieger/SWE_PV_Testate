@@ -12,11 +12,18 @@ public class GamePanel extends JPanel {
         setBackground(Color.BLACK);
     }
 
-
-
     @Override
     protected void paintComponent(java.awt.Graphics g) {
         super.paintComponent(g); // Hintergrund vorher löschen
         grid.draw(g); // Das Grid zeichnet alle GameObjects
+
+        // Score und Highscore anzeigen
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 16));
+        g.drawString("Score: " + grid.getScore(), 10, 15); // Score anzeigen
+        g.drawString("Highscore: " + grid.getHighscore(), 100, 15); // Highscore anzeigen
+
     }
+
+
 }

@@ -27,6 +27,9 @@ public class Paku_Paku {
             window.pack(); // Fenstergröße passt sich automatisch an das Panel (Grid * 20px) an
             window.setLocationRelativeTo(null); // zentriert das Fenster
 
+            int highscore = loadHighscore();
+            grid.setHighscore(highscore);
+
             window.addKeyListener(new KeyAdapter() { // Tastatureingaben abfangen
                 
                 @Override
@@ -43,6 +46,9 @@ public class Paku_Paku {
                         } 
                         else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                             grid.movePlayer(1, 0);
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                            saveHighscore(grid.getScore());
                         }
                     } 
                     catch (InvalidMoveException ime) {
@@ -66,5 +72,37 @@ public class Paku_Paku {
             e.printStackTrace();
         }
     }
+
+    // Methode zum Speichern des Highscores
+    private static void saveHighscore(int score) {
+        HighscoreData data = new HighscoreData();
+        data.score = score;
+
+        // Highscore in Datei speichern
+        try (java.io.ObjectOutputStream out = new java.io.ObjectOutputStream(new java.io.FileOutputStream("highscore.dat"))) {
+            out.writeObject(data);
+            System.out.println("Highscore gespeichert: " + score);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static int loadHighscore() {
+    try (java.io.ObjectInputStream in = new java.io.ObjectInputStream(new java.io.FileInputStream("highscore.dat"))) {
+        
+        // 1. Objekt aus der Datei lesen und in Variable speichern
+        HighscoreData data = (HighscoreData) in.readObject();
+        return data.score;
+
+    } catch (java.io.FileNotFoundException e) {
+        // Datei existiert nicht -> Erster Start
+        return 0; 
+
+    } catch (java.io.IOException | ClassNotFoundException e) {
+        // Lese- oder Formatfehler
+        System.err.println("FEHLER: Highscore-Datei beschädigt.");
+        return 0; 
+    }
+}
 }
 

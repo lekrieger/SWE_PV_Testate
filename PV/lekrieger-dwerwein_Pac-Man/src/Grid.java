@@ -8,6 +8,8 @@ public class Grid<T extends GameObject> extends GameObject {
     private int rows;   // Anzahl der Reihen im Grid
     private int cols;   // Anzahl der Spalten im Grid
     private T player; // Referenz auf das Player-Objekt im Grid
+    private int score = 0; // Punktestand
+    private int highscore = 0; // Höchster Punktestand
 
     // 2D-Array (so groß wie das Spielfeld) zur Speicherung der Schrittanzahl für Ameisen
     // Ameisen schreiben, wie viele Schritte sie zu dieser Zelle gebraucht haben
@@ -53,6 +55,18 @@ public class Grid<T extends GameObject> extends GameObject {
         return spielfeld[row][col];
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
+    }
+
+    public int getHighscore() {
+        return highscore;
+    }
+
     @Override
     public synchronized void update() { //public, damit alle Klassen die Methode aufrufen können
         for (int row = 0; row < rows; row++) {
@@ -92,8 +106,15 @@ public class Grid<T extends GameObject> extends GameObject {
         if (targetObj instanceof Wall) {    // Kollision mit Wand
             throw new InvalidMoveException("Bong!");
         } 
+        else if (targetObj instanceof Dot) {
+            score += 10; // Punktestand erhöhen
+            setCell(this.player.y, this.player.x, null); // alte Position leeren
+            this.player.x = targetX;
+            this.player.y = targetY;
+            setCell(targetY, targetX, this.player); // Player an neuer Position setzen
+        }
         else {
-            // Player an die neue Position bewegen
+
             setCell(this.player.y, this.player.x, null); // alte Position leeren
             this.player.x = targetX;
             this.player.y = targetY;
