@@ -29,7 +29,7 @@ public class LevelLoader {
         // Breite = Länge der allerersten Zeile
         int width = lines.get(0).length();
 
-        Grid<GameObject> grid = new Grid<>(width, height);
+        Grid<GameObject> grid = new Grid<>(height, width);
 
         // durch alle Zeilen iterieren
         for (int y = 0; y < height; y++) {
@@ -60,7 +60,7 @@ public class LevelLoader {
                 }
 
                 // GameObject im Grid an der Position (x, y) speichern
-                grid.setCell(x, y, obj);
+                grid.setCell(y, x, obj);
             }
         }     
         return grid;
