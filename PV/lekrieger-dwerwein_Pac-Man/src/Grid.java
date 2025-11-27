@@ -79,16 +79,16 @@ public class Grid<T extends GameObject> extends GameObject {
         int targetX = this.player.x + deltaX;
         int targetY = this.player.y + deltaY;
 
-        T targetObj = getCell(targetX, targetY);
+        T targetObj = getCell(targetY, targetX);
         if (targetObj instanceof Wall) {    // Kollision mit Wand
             throw new InvalidMoveException("Bong!");
         } 
         else {
             // Player an die neue Position bewegen
-            setCell(this.player.x, this.player.y, null); // alte Position leeren
+            setCell(this.player.y, this.player.x, null); // alte Position leeren
             this.player.x = targetX;
             this.player.y = targetY;
-            setCell(targetX, targetY, this.player); // Player an neuer Position setzen
+            setCell(targetY, targetX, this.player); // Player an neuer Position setzen
         }
     }
 
