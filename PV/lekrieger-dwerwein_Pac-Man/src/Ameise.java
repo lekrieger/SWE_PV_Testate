@@ -32,11 +32,15 @@ public class Ameise implements Runnable {
 
         // neuer Weg gefunden?
         if (!neueAmeisen.isEmpty()) {
-                
+              
+            // Liste für die gestarteten Threads der Kind-Ameisen
+            java.util.ArrayList<Thread> kindThreads = new java.util.ArrayList<>();
+
             // weitere Wege als neue Threads starten
             for (int i = 1; i < neueAmeisen.size(); i++) {
                 Thread t = new Thread(neueAmeisen.get(i));
                 t.start();
+                kindThreads.add(t);
             }
 
             // ersten Weg selbst gehen
@@ -45,7 +49,16 @@ public class Ameise implements Runnable {
             this.y = meinWeg.y;
             this.steps = meinWeg.steps;
 
-            run(); 
+            run();
+        
+            // Auf alle Kinder warten
+            for (Thread t : kindThreads) {
+                try {
+                    t.join(); //  warten, bis das Kind fertig ist
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
                     
         }
     }

@@ -68,7 +68,7 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     @Override
-    public synchronized void update() { //public, damit alle Klassen die Methode aufrufen können
+    public void update() { //public, damit alle Klassen die Methode aufrufen können
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 T obj = spielfeld[row][col];

@@ -3,6 +3,7 @@ import java.awt.*;
 public class Ghost extends GameObject {
 
     private Grid<GameObject> grid;
+    private int moveCounter = 0;
 
     // Setter, um das Grid dem Levelloader zu übergeben 
     public void setGrid(Grid<GameObject> grid) {
@@ -20,6 +21,13 @@ public class Ghost extends GameObject {
     @Override
     protected void update() {
         if (grid == null) return; // Sicherheits-Check
+
+        // Cooldown, nur alle 5 Updates bewegen, sonst Geister zu schnell
+        moveCounter++;
+        if (moveCounter < 5) { 
+            return; 
+        }
+        moveCounter = 0; 
 
         // Spielfeld zurücksetzen (alte Zahlen löschen)
         grid.resetSteps();
@@ -70,19 +78,28 @@ public class Ghost extends GameObject {
         while (currentDist > 2) {
             // Nachbarn checken (Oben, Rechts, Unten, Links)
             int[][] dirs = {{0, -1}, {1, 0}, {0, 1}, {-1, 0}};
+            boolean foundNeighbor = false;
             
             for (int[] d : dirs) {
                 int nx = zielX + d[0];
                 int ny = zielY + d[1];
+
+                if (nx < 0 || nx >= grid.getCols() || ny < 0 || ny >= grid.getRows()) continue;
                 int nDist = grid.getStep(ny, nx);
-                
+
                 // Vorgänger gefunden? ein Schritt weniger
-                if (nDist == currentDist - 1) {
+                if (nDist > 0 && nDist == currentDist - 1) {
                     zielX = nx;
                     zielY = ny;
                     currentDist = nDist;
+                    foundNeighbor = true; // Weg gefunden
                     break;
                 }
+            }
+
+            if (!foundNeighbor) {
+                // kein Nachbar gefunden, Abbruch
+                return;
             }
         }
 
