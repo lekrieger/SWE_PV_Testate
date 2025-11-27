@@ -19,7 +19,7 @@ public class Ghost extends GameObject {
     }
 
     @Override
-    protected void update() {
+    protected void update() throws GameOverException{
         if (grid == null) return; // Sicherheits-Check
 
         // Cooldown, nur alle 5 Updates bewegen, sonst Geister zu schnell
@@ -47,11 +47,12 @@ public class Ghost extends GameObject {
             }
 
         // Grid jetzt voller Zahlen, jetzt Weg suchen
+        // move wirft die GameOverException
         move();
     }
 
-    @Override
-    protected void move() {
+    protected void move() throws GameOverException{
+
         // Position des Spielers im Grid suchen
         GameObject player = null;
         for(int r=0; r<grid.getRows(); r++) {
@@ -101,6 +102,11 @@ public class Ghost extends GameObject {
                 // kein Nachbar gefunden, Abbruch
                 return;
             }
+        }
+
+        // bei Kollision mit Spieler GameOverException werfen
+        if (grid.getCell(zielY, zielX) instanceof Player) {
+            throw new GameOverException("GAME OVER: Vom Geist gefressen!");
         }
 
         // zielX und zielY  jetzt das Feld direkt neben dem Geist, das zum Spieler führt        

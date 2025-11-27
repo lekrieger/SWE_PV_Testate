@@ -10,12 +10,7 @@ public class Player extends GameObject {
     }
 
     @Override
-    protected void update() {
-        // Player-Logik hier implementieren (Bewegung, Kollisionen, etc.)
+    protected void update() throws GameOverException {
+        
     }   
-
-    @Override
-    protected void move() {
-        // Bewegungslogik für den Player hier implementieren
-    }
 }

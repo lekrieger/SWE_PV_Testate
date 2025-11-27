@@ -53,8 +53,10 @@ public class Paku_Paku {
                     } 
                     catch (InvalidMoveException ime) {
                     System.out.println("Bong!");
-                    };
-
+                    }
+                    catch (GameOverException goe) {
+                        System.out.println(goe.getMessage());
+                    }    
                     panel.repaint(); // Panel neu zeichnen, damit die Bewegung sichtbar wird
                 }
             });

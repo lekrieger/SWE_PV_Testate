@@ -10,13 +10,9 @@ public class PowerUp extends GameObject {
     }
 
     @Override
-    protected void update() {
+    protected void update() throws GameOverException {
         // PowerUp-Logik hier implementieren (z.B. Kollisionserkennung mit Paku Paku)
     }       
 
-    @Override
-    protected void move() {
-        // PowerUps bewegen sich nicht, daher bleibt diese Methode leer
-    }
 }
 

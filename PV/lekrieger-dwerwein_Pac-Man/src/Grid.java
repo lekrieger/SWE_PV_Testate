@@ -68,7 +68,7 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     @Override
-    public void update() { //public, damit alle Klassen die Methode aufrufen können
+    public void update() throws GameOverException { //public, damit alle Klassen die Methode aufrufen können
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 T obj = spielfeld[row][col];
@@ -77,11 +77,6 @@ public class Grid<T extends GameObject> extends GameObject {
                 }
             }
         }
-    }
-
-    @Override
-    protected void move() {
-        // Grid bewegt sich nicht selbst, zum Zufriedenstellen der abstrakten Methode
     }
 
     @Override
@@ -98,14 +93,18 @@ public class Grid<T extends GameObject> extends GameObject {
     }
 
     // Methode zur Bewegung des Players im Grid
-    public synchronized void movePlayer(int deltaX, int deltaY) throws InvalidMoveException {
+    public synchronized void movePlayer(int deltaX, int deltaY) throws InvalidMoveException, GameOverException {
         int targetX = this.player.x + deltaX;
         int targetY = this.player.y + deltaY;
 
         T targetObj = getCell(targetY, targetX);
         if (targetObj instanceof Wall) {    // Kollision mit Wand
             throw new InvalidMoveException("Bong!");
-        } 
+        }
+        else if (targetObj instanceof Ghost) {
+            // Exception fliegt zum KeyListener
+            throw new GameOverException("GAME OVER: In Geist gelaufen!");
+        }
         else if (targetObj instanceof Dot) {
             score += 10; // Punktestand erhöhen
             setCell(this.player.y, this.player.x, null); // alte Position leeren

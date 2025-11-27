@@ -10,12 +10,8 @@ public class Wall extends GameObject {
     }
 
     @Override
-    protected void update() {
-        // Wall-Logik hier implementieren (falls nötig)
+    protected void update() throws GameOverException {
+        // Wände haben keine Update-Logik
     }   
 
-    @Override
-    protected void move() {
-        // Wände bewegen sich nicht, daher bleibt diese Methode leer
-    }
 }
