@@ -47,9 +47,6 @@ public class Paku_Paku {
                     else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                         grid.setNextDirection(1, 0);
                     }
-                    else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        saveHighscore(grid.getScore());
-                    }
 
                     panel.repaint(); // Panel neu zeichnen, damit die Bewegung sichtbar wird
                 }
