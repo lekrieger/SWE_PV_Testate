@@ -14,7 +14,7 @@ public class Grid<T extends GameObject> extends GameObject {
     private int nextDeltaX = 0; // nächste X-Richtung für den Player
     private int nextDeltaY = 0; // nächste Y-Richtung für den Player
     private volatile boolean isRunning = true; // Spiel läuft oder nicht
-    private boolean levelCompleted = false; // Flag für Sieg
+    private boolean levelCompleted = false; // Flag für Sieg.
     private int playerMoveCounter = 0;
     private final int player_speed = 2; // 1 = schnell, 2 = normal, 3 = langsam
 
