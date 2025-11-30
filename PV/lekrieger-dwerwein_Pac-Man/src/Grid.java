@@ -14,6 +14,7 @@ public class Grid<T extends GameObject> extends GameObject {
     private int nextDeltaX = 0; // nächste X-Richtung für den Player
     private int nextDeltaY = 0; // nächste Y-Richtung für den Player
     private volatile boolean isRunning = true; // Spiel läuft oder nicht
+    private boolean levelCompleted = false; // Flag für Sieg
     private int playerMoveCounter = 0;
     private final int player_speed = 2; // 1 = schnell, 2 = normal, 3 = langsam
 
@@ -40,6 +41,10 @@ public class Grid<T extends GameObject> extends GameObject {
     }
     public int getCols() {
         return cols;
+    }
+
+    public boolean isLevelCompleted() {
+        return levelCompleted;
     }
 
     // beim Setter das zu übergebende Objekt im 2D-Array speichern
@@ -168,6 +173,7 @@ public class Grid<T extends GameObject> extends GameObject {
                     this.highscore = this.score;
                     System.out.println("Neuer Highscore: " + this.highscore);
                 }
+                this.levelCompleted = true;
                 stopGame(); // Spiel stoppen
             }
         }

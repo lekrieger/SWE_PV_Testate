@@ -25,7 +25,12 @@ public class GamePanel extends JPanel {
 
         // Prüfen, ob das Spiel vorbei ist
         if (!grid.isRunning()) {
-            drawGameOver(g);
+            if (grid.isLevelCompleted()) {
+                drawWinScreen(g); // Grün
+            } 
+            else {
+                drawGameOver(g);  // Rot
+            }
         }
     }
 
@@ -56,6 +61,32 @@ public class GamePanel extends JPanel {
         g.drawString(scoreText, scoreX, y + 40);
         int highscoreX = (getWidth() - g.getFontMetrics().stringWidth(highscoreText)) / 2;
         g.drawString(highscoreText, highscoreX, y + 70);
+    }
+
+    private void drawWinScreen(Graphics g) {
+
+    // Hintergrund
+    g.setColor(new Color(0, 100, 0, 150)); 
+    g.fillRect(0, 0, getWidth(), getHeight());
+
+    // Text
+    g.setColor(Color.GREEN);
+    g.setFont(new Font("Arial", Font.BOLD, 40));
+    String text = "LEVEL COMPLETED!";
+
+    // Zentrieren
+    FontMetrics metrics = g.getFontMetrics();
+    int x = (getWidth() - metrics.stringWidth(text)) / 2;
+    int y = getHeight() / 2;
+
+    g.drawString(text, x, y);
+
+    g.setColor(Color.WHITE);
+    g.setFont(new Font("Arial", Font.BOLD, 20));
+    String scoreText = "Final Score: " + grid.getScore();
+    int scoreX = (getWidth() - g.getFontMetrics().stringWidth(scoreText)) / 2;
+    g.drawString(scoreText, scoreX, y + 40);
+
     }
 
 }
