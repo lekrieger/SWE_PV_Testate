@@ -61,7 +61,7 @@ public class Grid<T extends GameObject> extends GameObject {
             }
         }        
     }
-    
+
     public synchronized T getCell(int row, int col) {
         return spielfeld[row][col];
     }
@@ -160,6 +160,11 @@ public class Grid<T extends GameObject> extends GameObject {
         }
         else if (targetObj instanceof Dot) {
             score += 10; // Punktestand erhöhen
+
+            if (score > highscore) {
+                highscore = score;
+            }
+
             setCell(this.player.y, this.player.x, null); // alte Position leeren
             this.player.x = targetX;
             this.player.y = targetY;
