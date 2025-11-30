@@ -5,8 +5,8 @@ public class Grid<T extends GameObject> extends GameObject {
 
     // Attribute
     private T[][] spielfeld; // 2D-Array (Gitter) von Zellen des Typs T
-    private int rows;   // Anzahl der Reihen im Grid
-    private int cols;   // Anzahl der Spalten im Grid
+    private int rows; // Anzahl der Reihen im Grid
+    private int cols; // Anzahl der Spalten im Grid
     private T player; // Referenz auf das Player-Objekt im Grid
     private int score = 0; // Punktestand
     private int highscore = 0; // Höchster Punktestand
@@ -61,6 +61,7 @@ public class Grid<T extends GameObject> extends GameObject {
             }
         }        
     }
+    
     public synchronized T getCell(int row, int col) {
         return spielfeld[row][col];
     }
