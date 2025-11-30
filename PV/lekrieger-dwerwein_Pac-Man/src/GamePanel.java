@@ -23,7 +23,39 @@ public class GamePanel extends JPanel {
         g.drawString("Score: " + grid.getScore(), 10, 15); // Score anzeigen
         g.drawString("Highscore: " + grid.getHighscore(), 100, 15); // Highscore anzeigen
 
+        // Prüfen, ob das Spiel vorbei ist
+        if (!grid.isRunning()) {
+            drawGameOver(g);
+        }
     }
 
+    // Game-Over-Screen
+    private void drawGameOver(Graphics g) {
+        // 
+        g.setColor(new Color(0, 0, 0, 150)); // Schwarz mit Transparenz
+        g.fillRect(0, 0, getWidth(), getHeight());
+
+        // Text
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial", Font.BOLD, 40));
+        String text = "GAME OVER";
+
+        // Text zentrieren
+        FontMetrics metrics = g.getFontMetrics();
+        int x = (getWidth() - metrics.stringWidth(text)) / 2;
+        int y = getHeight() / 2;
+
+        g.drawString(text, x, y);
+
+       
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        String scoreText = "Final Score: " + grid.getScore();
+        String highscoreText = "Highscore: " + grid.getHighscore();
+        int scoreX = (getWidth() - g.getFontMetrics().stringWidth(scoreText)) / 2;
+        g.drawString(scoreText, scoreX, y + 40);
+        int highscoreX = (getWidth() - g.getFontMetrics().stringWidth(highscoreText)) / 2;
+        g.drawString(highscoreText, highscoreX, y + 70);
+    }
 
 }

@@ -21,7 +21,7 @@ public class GameLoop implements Runnable {
             catch (GameOverException e) {
                 System.out.println(e.getMessage());
                 grid.stopGame(); // Spiel beenden, wenn GameOverException geworfen
-                grid.setHighscore(grid.getScore());
+                // grid.setHighscore(grid.getScore());
                 break;
             }               
             catch (InterruptedException e) {
@@ -29,5 +29,6 @@ public class GameLoop implements Runnable {
             }
         }
         Paku_Paku.saveHighscore(grid.getHighscore()); // Highscore speichern, wenn das Spiel endet
+        panel.repaint(); // letztes Repaint für den Game-Over-Screen
     }
 }
