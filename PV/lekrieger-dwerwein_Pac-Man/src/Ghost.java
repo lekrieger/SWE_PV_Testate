@@ -4,6 +4,7 @@ public class Ghost extends GameObject {
 
     private Grid<GameObject> grid;
     private int moveCounter = 0;
+    private GameObject standingOn = null; // Rucksack, was der Geist überdeckt
 
     // Setter, um das Grid dem Levelloader zu übergeben 
     public void setGrid(Grid<GameObject> grid) {
@@ -104,14 +105,26 @@ public class Ghost extends GameObject {
             }
         }
 
+        GameObject targetObj = grid.getCell(zielY, zielX);
+
+        // Prüfen, ob da schon ein anderer Geist steht
+        if (targetObj instanceof Ghost) {
+            return; // warten, bis Zelle frei ist
+        }
+
         // bei Kollision mit Spieler GameOverException werfen
-        if (grid.getCell(zielY, zielX) instanceof Player) {
+        if (targetObj instanceof Player) {
             throw new GameOverException("GAME OVER: Vom Geist gefressen!");
         }
 
+        // alte Objekt wiederherstellen (aus dem Rucksack holen)
+        grid.setCell(this.y, this.x, standingOn); 
+        
+        // Das neue Objekt in den Rucksack packen
+        standingOn = targetObj;
+
         // zielX und zielY  jetzt das Feld direkt neben dem Geist, das zum Spieler führt        
         // Im Grid aktualisieren 
-        grid.setCell(this.y, this.x, null); // altes Feld leeren
         this.x = zielX;
         this.y = zielY;
         grid.setCell(this.y, this.x, this); // auf neues Feld setzen
